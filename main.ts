@@ -1,6 +1,6 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == input.compassHeading()) {
-        if (-40 > radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+        if (-25 > radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
             if (input.buttonIsPressed(Button.A)) {
                 radio.sendString("shoot")
                 basic.pause(1000)
