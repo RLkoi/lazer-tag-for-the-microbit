@@ -1,6 +1,6 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber < input.compassHeading() + 20 && receivedNumber > input.compassHeading() - 20) {
-        if (-25 > radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+        if (-60 > radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
             if (input.buttonIsPressed(Button.A)) {
                 radio.sendString("shoot")
                 basic.pause(1000)
@@ -8,13 +8,19 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
 })
+input.onButtonPressed(Button.A, function () {
+    soundExpression.giggle.playUntilDone()
+})
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "shoot") {
         Health += -1
     }
 })
 input.onButtonPressed(Button.B, function () {
-    basic.showString("" + (Health))
+    basic.pause(500)
+    while (!(input.buttonIsPressed(Button.B))) {
+        basic.showString("" + (Health))
+    }
 })
 radio.onReceivedValue(function (name, value) {
     if ("Game over" == name) {
