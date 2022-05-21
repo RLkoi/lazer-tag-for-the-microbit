@@ -1,5 +1,5 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == input.compassHeading()) {
+    if (receivedNumber < input.compassHeading() + 20 && receivedNumber > input.compassHeading() - 20) {
         if (-25 > radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
             if (input.buttonIsPressed(Button.A)) {
                 radio.sendString("shoot")
